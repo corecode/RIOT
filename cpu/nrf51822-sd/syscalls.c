@@ -68,7 +68,7 @@ void _fini(void)
 void _exit(int n)
 {
     printf("#! exit %i: resetting\n", n);
-    NVIC_SystemReset();
+    sd_nvic_SystemReset();
     while(1);
 }
 

@@ -207,8 +207,8 @@ int gpio_init_int(gpio_t dev, gpio_pp_t pullup, gpio_flank_t flank, gpio_cb_t cb
     pin = get_pin(dev);         /* no need to check return value, init_in already did */
 
     /* set interrupt priority and enable global GPIOTE interrupt */
-    NVIC_SetPriority(GPIOTE_IRQn, GPIO_IRQ_PRIO);
-    NVIC_EnableIRQ(GPIOTE_IRQn);
+    sd_nvic_SetPriority(GPIOTE_IRQn, GPIO_IRQ_PRIO);
+    sd_nvic_EnableIRQ(GPIOTE_IRQn);
 
     /* save callback */
     gpio_config.dev = dev;

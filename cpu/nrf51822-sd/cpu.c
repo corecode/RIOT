@@ -25,5 +25,5 @@
 void cpu_init(void)
 {
     /* set pendSV interrupt to lowest possible priority */
-    NVIC_SetPriority(PendSV_IRQn, 0xff);
+    sd_nvic_SetPriority(PendSV_IRQn, 0xff);
 }

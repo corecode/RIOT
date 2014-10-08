@@ -27,8 +27,6 @@
 
 void random_init(void)
 {
-    NRF_RNG->POWER = 1;
-    NRF_RNG->TASKS_START = 1;
 }
 
 int random_read(char *buf, unsigned int num)
@@ -36,9 +34,15 @@ int random_read(char *buf, unsigned int num)
     unsigned int count = 0;
 
     while (count < num) {
-        while (NRF_RNG->EVENTS_VALRDY == 0);
-        NRF_RNG->EVENTS_VALRDY = 0;
-        buf[count++] = (char)NRF_RNG->VALUE;
+        uint8_t available = 0;
+        sd_rand_application_bytes_available(&available);
+        if (available == 0)
+            continue;
+        if (available > num - count)
+            available = num - count;
+        if (sd_rand_application_vector_get(&buf[count], available) != NRF_SUCCESS)
+            continue;
+        count += available;
     }
 
     return count;
@@ -46,12 +50,10 @@ int random_read(char *buf, unsigned int num)
 
 void random_poweron(void)
 {
-    NRF_RNG->POWER = 1;
 }
 
 void random_poweroff(void)
 {
-    NRF_RNG->POWER = 0;
 }
 
 #endif /* RANDOM_NUMOF */

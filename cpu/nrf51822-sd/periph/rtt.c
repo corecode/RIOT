@@ -42,14 +42,11 @@ void rtt_init(void)
     rtt_poweron();
 
     /* configure interrupt */
-    NVIC_SetPriority(RTT_IRQ, RTT_IRQ_PRIO);
-    NVIC_EnableIRQ(RTT_IRQ);
+    sd_nvic_SetPriority(RTT_IRQ, RTT_IRQ_PRIO);
+    sd_nvic_EnableIRQ(RTT_IRQ);
 
     /* set prescaler */
     RTT_DEV->PRESCALER = RTT_PRESCALER;
-
-    /* enable the low-frequency clock */
-    NRF_CLOCK->TASKS_LFCLKSTART = 1;
 
     /* start the actual RTT thing */
     RTT_DEV->TASKS_START = 1;

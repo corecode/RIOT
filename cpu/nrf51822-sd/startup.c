@@ -67,6 +67,8 @@ void reset_handler(void)
         *(dst++) = 0;
     }
 
+    /* XXX init softdevice here? */
+
     /* initialize the board and startup the kernel */
     board_init();
     /* initialize std-c library (this should be done after board_init) */
