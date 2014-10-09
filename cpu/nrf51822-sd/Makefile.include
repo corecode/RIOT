@@ -18,7 +18,7 @@ MODEL = $(shell echo $(CPU_MODEL)|tr 'a-z' 'A-Z')
 export CFLAGS += -DCPU_MODEL_$(MODEL)
 
 # include CPU specific includes
-export INCLUDES += -I$(RIOTCPU)/$(CPU)/include
+export INCLUDES += -I$(RIOTCPU)/$(CPU)/include -I$(RIOTCPU)/$(CPU)/include/$(SOFTDEV)
 
 # add the CPU specific system calls implementations for the linker
 export UNDEF += $(BINDIR)cpu/syscalls.o

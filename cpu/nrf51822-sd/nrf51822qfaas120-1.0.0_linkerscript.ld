@@ -35,8 +35,8 @@ SEARCH_DIR(.)
 MEMORY
 {
 /* XXX fix for sd */
-    rom (rx)    : ORIGIN = 0x00000000, LENGTH = 256K
-    ram (rwx)   : ORIGIN = 0x20000000, LENGTH = 16K
+    rom (rx)    : ORIGIN = 0x00018000, LENGTH = 160K
+    ram (rwx)   : ORIGIN = 0x20002800, LENGTH = 6K
 }
 
 /* The stack size used by the application. NOTE: you need to adjust  */

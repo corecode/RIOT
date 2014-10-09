@@ -35,12 +35,12 @@ int random_read(char *buf, unsigned int num)
 
     while (count < num) {
         uint8_t available = 0;
-        sd_rand_application_bytes_available(&available);
+        sd_rand_application_bytes_available_get(&available);
         if (available == 0)
             continue;
         if (available > num - count)
             available = num - count;
-        if (sd_rand_application_vector_get(&buf[count], available) != NRF_SUCCESS)
+        if (sd_rand_application_vector_get((uint8_t *)&buf[count], available) != NRF_SUCCESS)
             continue;
         count += available;
     }
