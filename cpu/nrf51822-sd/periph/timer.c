@@ -51,8 +51,8 @@ int timer_init(tim_t dev, unsigned int ticks_per_us, void (*callback)(int))
             timer = TIMER_0_DEV;
             timer->POWER = 1;
             timer->BITMODE = TIMER_0_BITMODE;
-            NVIC_SetPriority(TIMER_0_IRQ, TIMER_IRQ_PRIO);
-            NVIC_EnableIRQ(TIMER_0_IRQ);
+            sd_nvic_SetPriority(TIMER_0_IRQ, TIMER_IRQ_PRIO);
+            sd_nvic_EnableIRQ(TIMER_0_IRQ);
             break;
 #endif
 #if TIMER_1_EN
@@ -60,8 +60,8 @@ int timer_init(tim_t dev, unsigned int ticks_per_us, void (*callback)(int))
             timer = TIMER_1_DEV;
             timer->POWER = 1;
             timer->BITMODE = TIEMR_1_BITMODE;
-            NVIC_SetPriority(TIMER_1_IRQ, TIMER_IRQ_PRIO);
-            NVIC_EnableIRQ(TIMER_1_IRQ);
+            sd_nvic_SetPriority(TIMER_1_IRQ, TIMER_IRQ_PRIO);
+            sd_nvic_EnableIRQ(TIMER_1_IRQ);
             break;
 #endif
 #if TIMER_2_EN
@@ -69,8 +69,8 @@ int timer_init(tim_t dev, unsigned int ticks_per_us, void (*callback)(int))
             timer = TIMER_2_DEV;
             timer->POWER = 1;
             timer->BITMODE = TIMER_2_BITMODE;
-            NVIC_SetPriority(TIMER_2_IRQ, TIMER_IRQ_PRIO);
-            NVIC_EnableIRQ(TIMER_2_IRQ);
+            sd_nvic_SetPriority(TIMER_2_IRQ, TIMER_IRQ_PRIO);
+            sd_nvic_EnableIRQ(TIMER_2_IRQ);
             break;
 #endif
     case TIMER_UNDEFINED:
@@ -284,17 +284,17 @@ void timer_irq_enable(tim_t dev)
     switch (dev) {
 #if TIMER_0_EN
         case TIMER_0:
-            NVIC_EnableIRQ(TIMER_0_IRQ);
+            sd_nvic_EnableIRQ(TIMER_0_IRQ);
             break;
 #endif
 #if TIMER_1_EN
         case TIMER_1:
-            NVIC_EnableIRQ(TIMER_1_IRQ);
+            sd_nvic_EnableIRQ(TIMER_1_IRQ);
             break;
 #endif
 #if TIMER_2_EN
         case TIMER_2:
-            NVIC_EnableIRQ(TIMER_2_IRQ);
+            sd_nvic_EnableIRQ(TIMER_2_IRQ);
             break;
 #endif
         case TIMER_UNDEFINED:
@@ -307,17 +307,17 @@ void timer_irq_disable(tim_t dev)
     switch (dev) {
 #if TIMER_0_EN
         case TIMER_0:
-            NVIC_DisableIRQ(TIMER_0_IRQ);
+            sd_nvic_DisableIRQ(TIMER_0_IRQ);
             break;
 #endif
 #if TIMER_1_EN
         case TIMER_1:
-            NVIC_DisableIRQ(TIMER_1_IRQ);
+            sd_nvic_DisableIRQ(TIMER_1_IRQ);
             break;
 #endif
 #if TIMER_2_EN
         case TIMER_2:
-            NVIC_DisableIRQ(TIMER_2_IRQ);
+            sd_nvic_DisableIRQ(TIMER_2_IRQ);
             break;
 #endif
         case TIMER_UNDEFINED:
